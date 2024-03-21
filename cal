@@ -1,0 +1,31 @@
+function calculateTotal() {
+    var totalDuration = 0;
+    var totalCalories = 0;
+    var tasks = document.querySelectorAll('.task');
+    
+    tasks.forEach(function(task, index) {
+        var durationInput = document.getElementById('task' + (index + 1) + '_duration');
+        var caloriesInput = document.getElementById('task' + (index + 1) + '_calories');
+        var duration = parseInt(durationInput.value);
+        var calories = parseInt(caloriesInput.value);
+        
+        totalDuration += duration;
+        totalCalories += calories;
+        
+        // Check if calories exceed 1700
+        if (totalCalories > 1700) {
+            task.classList.add('over-calories');
+        } else {
+            task.classList.remove('over-calories');
+        }
+    });
+    
+    document.getElementById('total').innerHTML = "Total Duration: " + totalDuration + " minutes | Total Calories: " + totalCalories;
+
+    // Check if total calories exceed 1700
+    if (totalCalories > 1700) {
+        document.getElementById('total').classList.add('over-calories');
+    } else {
+        document.getElementById('total').classList.remove('over-calories');
+    }
+}
